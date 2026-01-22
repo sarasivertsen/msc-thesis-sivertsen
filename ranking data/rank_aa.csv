@@ -1,4 +1,4 @@
-﻿Participant;Sample;Rank;Gender ;COVID;Age 
+﻿Participant;Sample;Rank;Gender;COVID;Age 
 P1;REF;3;Male;No;18-25
 P1;LOW;1;Male;No;18-25
 P1;MED;2;Male;No;18-25
@@ -114,4 +114,5 @@ P30;HIGH;2;Female;Yes;31-35
 P31;REF;2;Female;No;26-30
 P31;LOW;3;Female;No;26-30
 P31;MED;4;Female;No;26-30
+
 P31;HIGH;1;Female;No;26-30

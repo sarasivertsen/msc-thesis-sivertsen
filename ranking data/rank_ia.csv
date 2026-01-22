@@ -7,10 +7,10 @@ P2;REF;2;Male;No;18-25
 P2;LOW;1;Male;No;18-25
 P2;MED;4;Male;No;18-25
 P2;HIGH;3;Male;No;18-25
-P3;REF;1;Male ;No;36-40
-P3;LOW;2;Male ;No;36-40
-P3;MED;4;Male ;No;36-40
-P3;HIGH;3;Male ;No;36-40
+P3;REF;1;Male;No;36-40
+P3;LOW;2;Male;No;36-40
+P3;MED;4;Male;No;36-40
+P3;HIGH;3;Male;No;36-40
 P4;REF;1;Male;No;26-30
 P4;LOW;2;Male;No;26-30
 P4;MED;4;Male;No;26-30
@@ -120,3 +120,4 @@ P31;LOW;2;Female;No;26-30
 P31;MED;1;Female;No;26-30
 
 P31;HIGH;3;Female;No;26-30
+

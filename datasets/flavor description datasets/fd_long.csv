@@ -1,16 +1,16 @@
-participant_id,age,gender,covid_status,Beer,additive,flavors;;;
-P1,18-25,Male,Negative,Porter,Vanillin,Coffee; Hoppy;;
-P1,18-25,Male,Negative,Porter,Acetic acid ,Coffee; Fruity;;
-P1,18-25,Male,Negative,Pilsner,Raspberry ketone,Fruity; Stone fruit;;
-P1,18-25,Male,Negative,Pilsner,Isoamyl acetate ,Pome fruit;;;
-P2,18-25,Male,Negative,Porter,Vanillin,;;;
-P2,18-25,Male,Negative,Porter,Acetic acid ,Acidic;;;
-P2,18-25,Male,Negative,Pilsner,Raspberry ketone,Sweet;;;
-P2,18-25,Male,Negative,Pilsner,Isoamyl acetate ,Banana; Sweet;;
-P3,36-40,Male,Negative,Porter,Vanillin,Spice;;;
-P3,36-40,Male,Negative,Porter,Acetic acid ,;;;
-P3,36-40,Male,Negative,Pilsner,Raspberry ketone,Fruity;;;
-P3,36-40,Male,Negative,Pilsner,Isoamyl acetate ,;;;
+participant_id,age,gender,covid_status,Beer,additive,flavors
+P1,18-25,Male,Negative,Porter,Vanillin,Coffee; Hoppy
+P1,18-25,Male,Negative,Porter,Acetic acid ,Coffee; Fruity
+P1,18-25,Male,Negative,Pilsner,Raspberry ketone,Fruity; Stone fruit
+P1,18-25,Male,Negative,Pilsner,Isoamyl acetate ,Pome fruit
+P2,18-25,Male,Negative,Porter,Vanillin,
+P2,18-25,Male,Negative,Porter,Acetic acid,Acidic
+P2,18-25,Male,Negative,Pilsner,Raspberry ketone,Sweet
+P2,18-25,Male,Negative,Pilsner,Isoamyl acetate ,Banana; Sweet
+P3,36-40,Male,Negative,Porter,Vanillin,Spice
+P3,36-40,Male,Negative,Porter,Acetic acid,
+P3,36-40,Male,Negative,Pilsner,Raspberry ketone,Fruity
+P3,36-40,Male,Negative,Pilsner,Isoamyl acetate,
 P4,26-30,Male,Negative,Porter,Vanillin,Grain; Burnt; Coffee;
 P4,26-30,Male,Negative,Porter,Acetic acid ,Coffee; Dark chocolate; Burnt; Molasses
 P4,26-30,Male,Negative,Pilsner,Raspberry ketone,Honey; Butter; Other;
@@ -122,4 +122,5 @@ P30,31-35,Female,Positive,Pilsner,Isoamyl acetate ,Banana;;;
 P31,26-30,Female,Negative,Porter,Vanillin,Strong; Bitter; Dark chocolate;
 P31,26-30,Female,Negative,Porter,Acetic acid ,Coffee;;;
 P31,26-30,Female,Negative,Pilsner,Raspberry ketone,Berry; Fruity;;
+
 P31,26-30,Female,Negative,Pilsner,Isoamyl acetate ,Fruity;;;

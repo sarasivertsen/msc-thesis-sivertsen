@@ -5,7 +5,7 @@
 #   1. Kendall's W test to test panel agreement 
 #   2. Friedman tests (overall and subgroups) 
 #   3. Nemenyi post-hoc analysis (if significant Friedman) 
-#   4. Threshold discrimination analysis 
+#   4. Exact binomial tests 
 
 # ----- Installing packages, setting up directories, defining datasets, storing results ----- #
 

@@ -139,7 +139,7 @@ for (dataset_name in names(datasets)) {
   }
 }
 
-# ----- Threshold discrimination analysis ----- #
+# ----- Exact binomial tests ----- #
 threshold_result <- list()
 
 for (dataset_name in names(datasets)) {

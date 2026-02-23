@@ -12,7 +12,7 @@
 # ----- Installing packages, setting up directories, defining datasets, storing results ----- #
 
 # Installing packages
-required_pkgs <- c("FactoMineR", "ggplot2", "ggrepel", "scales")
+required_pkgs <- c("FactoMineR", "ggplot2", "ggrepel", "scales", "vegan")
 for (p in required_pkgs) {
   if (!requireNamespace(p, quietly = TRUE)) install.packages(p, repos = "https://cloud.r-project.org")
   library(p, character.only = TRUE)

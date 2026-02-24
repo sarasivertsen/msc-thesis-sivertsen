@@ -173,7 +173,7 @@ for (dataset_name in names(datasets)) {
    bt <- binom.test(
      x = sum(participant_scores$correct),
      n = nrow(participant_scores),
-     p = 0.5,
+     p = 1/6,
      alternative = "greater"
     )
   

@@ -5,7 +5,7 @@
 #   1. Kendall's W test to test panel agreement 
 #   2. Friedman tests (overall and subgroups) 
 #   3. Nemenyi post-hoc analysis (if significant Friedman) 
-#   4. Exact binomial tests 
+#   4. Threshold discrimination analysis 
 
 # ----- Installing packages, setting up directories, defining datasets, storing results ----- #
 
@@ -73,23 +73,43 @@ for (dataset_name in names(datasets)) {
   kendall_w <- tryCatch({
     rank_mat <- df %>%
       select(Participant, Sample, Rank) %>%
-      pivot_wider(names_from = Sample, values_from = Rank) %>%
-      drop_na()
+      pivot_wider(names_from = Sample, values_from = Rank)
+      
+    n_before <- nrow(rank_mat)
+    rank_mat <- rank_mat %>% drop_na()
+    n_after <- nrow(rank_mat)
+    
+    if (n_before != n_after) {
+      log_msgs <<- c(log_msgs, sprintf(
+        "Kendall's W [%s]: dropped %d participant(s) with missing ranks (%d participants remaining)",
+        dataset_name, n_before - n_after, n_after
+      ))
+    }
     
     rank_matrix <- as.matrix(rank_mat[,-1])
-    res <- DescTools::KendallW(rank_matrix, correct = TRUE)
+    
+    n <- nrow(rank_matrix)
+    k <- ncol(rank_matrix)
+    
+    W <- unname(DescTools::KendallW(rank_matrix, correct = TRUE))
+    chi_sq <- W * n * (k - 1)
+    df_val <- k - 1
+    p_val <- pchisq(chi_sq, df = df_val, lower.tail = FALSE)
     
     list(
-      W = unname(if (is.list(res)) res$W else res),
-      Chi.sq = if (is.list(res)) res$Chi.sq else NA_real_,
-      df = if (is.list(res)) res$df else NA_real_,
-      p.value = if (is.list(res)) res$p.value else NA_real_
+      W = W, 
+      chi_sq = chi_sq, 
+      df = df_val,
+      p_value = p_val,
+      n_judges = n,
+      n_objects = k, 
+      note = "Chi-sq and p-value has been calculated manually from W."
     )
-  }, error = function(e) {
-    log_msgs <<- c(log_msgs, paste("KendallW failed:", dataset_name, e$message))
-    return(NULL)
+    
+}, error = function(e) {
+   log_msgs <<- c(log_msgs, paste("Kendall's W failed: ", dataset_name, e$message))
+   return(NULL)
   })
-  
   kendall_results[[dataset_name]] <- kendall_w
 }
 
@@ -139,7 +159,7 @@ for (dataset_name in names(datasets)) {
   }
 }
 
-# ----- Exact binomial tests ----- #
+# ----- Threshold discrimination analysis ----- #
 threshold_result <- list()
 
 for (dataset_name in names(datasets)) {
@@ -199,9 +219,9 @@ kendall_summary <- bind_rows(
     data.frame(
       dataset = nm,
       W = x$W,
-      chi_sq = x$Chi.sq,
+      chi_sq = x$chi_sq,
       df = x$df,
-      p_value = x$p.value
+      p_value = x$p_value
     )
   })
 )
@@ -233,19 +253,20 @@ posthoc_summary <- bind_rows(lapply(names(posthoc_results), function(nm) {
 
 write.csv(posthoc_summary, out_path("posthoc_nemenyi_results.csv"), row.names = FALSE)
 
-# Threshold discrimination analysis 
+# Threshold discrimination (exact binomial test)
 threshold_summary <- bind_rows(threshold_result)
 write.csv(threshold_summary, out_path("threshold_discrimination_results.csv"), row.names = FALSE)
 
 # ----- Writing logs ------ #
 if (length(log_msgs) > 0) {
-  writeLines(log_msgs, file.path(results_dir, "friedman_nemenyi_log.txt"))
+  writeLines(log_msgs, file.path(results_dir, "rank_analysis_log.txt"))
 }
 
-cat("Analysis complete: Kendall's W, Friedman, Nemenyi, and Threshold discrimination results saved.\n")
+cat("Analysis complete: Kendall's W, Friedman, Nemenyi, and exact binomial test results saved.\n")
 
 # ----- Session information ----- #
 writeLines(
   capture.output(sessionInfo()),
   out_path("sessionInfo_rank.txt")
 )
+
